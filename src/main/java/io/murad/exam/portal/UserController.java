@@ -7,10 +7,7 @@ import io.murad.exam.portal.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -31,5 +28,16 @@ public class UserController {
         userRole.setRole(role);
         userRoles.add(userRole);
         return new ResponseEntity<>(userService.createUser(user, userRoles), HttpStatus.CREATED);
+    }
+
+    @GetMapping("/{username}")
+    public ResponseEntity<User> getUser(@PathVariable("username") String username) {
+        return new ResponseEntity<>(userService.getUser(username), HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{userId}")
+    public ResponseEntity<?> removeUser(@PathVariable("userId") Long userId) {
+        userService.deleteUser(userId);
+        return new ResponseEntity<>("User Removed", HttpStatus.OK);
     }
 }
