@@ -3,6 +3,8 @@ package io.murad.exam.portal.model;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -19,4 +21,8 @@ public class Role {
     private Long id;
     @Column
     private String roleName;
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "role")
+    @ToString.Exclude
+    private Set<UserRole> userRoles = new HashSet<>();
 }
