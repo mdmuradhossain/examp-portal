@@ -7,7 +7,6 @@ import javax.persistence.*;
 @Getter
 @Setter
 @ToString
-@RequiredArgsConstructor
 @AllArgsConstructor
 @NoArgsConstructor
 public class UserRole {

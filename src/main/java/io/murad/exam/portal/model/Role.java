@@ -8,7 +8,6 @@ import java.util.Set;
 
 @Getter
 @Setter
-@RequiredArgsConstructor
 @Entity
 @Table(name = "roles")
 @AllArgsConstructor
