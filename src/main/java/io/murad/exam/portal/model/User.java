@@ -47,7 +47,7 @@ public class User implements UserDetails {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
 
-        Set<GrantedAuthority> authorities = new HashSet<>();
+        Set<Authority> authorities = new HashSet<>();
 
         return null;
     }
