@@ -1,6 +1,6 @@
 package io.murad.exam.portal.service.impl;
 
-import io.murad.exam.portal.exception.UsernameAlreadyExists;
+import io.murad.exam.portal.exception.UsernameAlreadyExistsException;
 import io.murad.exam.portal.model.User;
 import io.murad.exam.portal.model.UserRole;
 import io.murad.exam.portal.repository.RoleRepository;
@@ -8,7 +8,6 @@ import io.murad.exam.portal.repository.UserRepository;
 import io.murad.exam.portal.service.UserService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -28,7 +27,7 @@ public class UserServiceImpl implements UserService {
         User existingUser = userRepository.findByUsername(user.getUsername());
         if (existingUser != null) {
             log.info("User with username {} already exists. Nothing will be done.", user.getUsername());
-            throw new UsernameAlreadyExists("User with username " + user.getUsername() + " already exists.");
+            throw new UsernameAlreadyExistsException("User with username " + user.getUsername() + " already exists.");
         } else {
             for (UserRole userRole : userRoles) {
                 roleRepository.save(userRole.getRole());

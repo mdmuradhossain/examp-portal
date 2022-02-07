@@ -1,5 +1,6 @@
 package io.murad.exam.portal.config;
 
+import io.murad.exam.portal.exception.JWTAuthenticationEntryPoint;
 import io.murad.exam.portal.service.impl.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -23,6 +24,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private UserDetailsServiceImpl userDetailsService;
+    @Autowired
+    private JWTAuthenticationEntryPoint jwtAuthenticationEntryPoint;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -33,7 +36,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .anyRequest().authenticated()
                 .and()
                 .exceptionHandling()
-                .authenticationEntryPoint(null)
+                .authenticationEntryPoint(jwtAuthenticationEntryPoint)
                 .and()
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
