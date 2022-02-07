@@ -18,11 +18,11 @@ public class AuthService {
     private JWTAuthenticationProvider jwtAuthenticationProvider;
     private AuthenticationManager authenticationManager;
 
-    private void authenticate(String username, String password) {
+    public void authenticate(String username, String password) {
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
     }
 
-    private AuthenticationResponse generateToken(AuthenticationRequest authenticationRequest) {
+    public AuthenticationResponse generateToken(AuthenticationRequest authenticationRequest) {
         authenticate(authenticationRequest.getUsername(), authenticationRequest.getPassword());
         UserDetails userDetails = userDetailsService.loadUserByUsername(authenticationRequest.getUsername());
         String token = jwtAuthenticationProvider.generateToken(userDetails);
