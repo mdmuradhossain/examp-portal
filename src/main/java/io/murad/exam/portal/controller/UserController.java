@@ -1,4 +1,4 @@
-package io.murad.exam.portal;
+package io.murad.exam.portal.controller;
 
 import io.murad.exam.portal.model.Role;
 import io.murad.exam.portal.model.User;
