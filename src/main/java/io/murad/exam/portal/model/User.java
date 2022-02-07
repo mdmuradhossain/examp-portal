@@ -39,7 +39,7 @@ public class User implements UserDetails {
     @Column
     private boolean enabled = true;
 
-    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER,mappedBy = "user")
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "user")
     @JsonIgnore
     private Set<UserRole> userRoles = new HashSet<>();
 
@@ -48,8 +48,11 @@ public class User implements UserDetails {
     public Collection<? extends GrantedAuthority> getAuthorities() {
 
         Set<Authority> authorities = new HashSet<>();
+        userRoles.forEach(userRole -> {
+            authorities.add(new Authority(userRole.getRole().getRoleName()));
+        });
+        return authorities;
 
-        return null;
     }
 
     @Override
