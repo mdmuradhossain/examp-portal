@@ -32,4 +32,8 @@ public class AuthService {
 
     }
 
+    public User getLoggedInUser(String username) {
+        return (User) userDetailsService.loadUserByUsername(username);
+    }
+
 }
