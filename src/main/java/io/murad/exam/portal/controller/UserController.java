@@ -7,6 +7,7 @@ import io.murad.exam.portal.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashSet;
@@ -18,9 +19,11 @@ import java.util.Set;
 @CrossOrigin("*")
 public class UserController {
     private final UserService userService;
+    private final PasswordEncoder passwordEncoder;
 
     @PostMapping()
     public ResponseEntity<User> createUser(@RequestBody User user) {
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         Set<UserRole> userRoles = new HashSet<>();
         Role role = new Role();
         role.setRoleName("ROLE_USER");
