@@ -26,7 +26,7 @@ public class UserController {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         Set<UserRole> userRoles = new HashSet<>();
         Role role = new Role();
-        role.setRoleName("ROLE_USER");
+        role.setRoleName("USER");
         UserRole userRole = new UserRole();
         userRole.setUser(user);
         userRole.setRole(role);

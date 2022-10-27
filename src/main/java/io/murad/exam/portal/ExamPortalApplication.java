@@ -30,24 +30,24 @@ public class ExamPortalApplication implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        User user = new User();
-        user.setFirstName("Murad");
-        user.setLastName("Hossain");
-        user.setUsername("murad");
-        user.setPassword(passwordEncoder.encode("admin"));
-        user.setEmail("murad@gmail.com");
-
-        Role roleAdmin = new Role();
-        roleAdmin.setRoleName("ADMIN");
-
-        Set<UserRole> userRoleSet = new HashSet<>();
-        UserRole userRole = new UserRole();
-
-        userRole.setRole(roleAdmin);
-        userRole.setUser(user);
-
-        userRoleSet.add(userRole);
-        User createAdmin = userService.createUser(user, userRoleSet);
+//        User user = new User();
+//        user.setFirstName("Murad");
+//        user.setLastName("Hossain");
+//        user.setUsername("murad");
+//        user.setPassword(passwordEncoder.encode("admin"));
+//        user.setEmail("murad@gmail.com");
+//
+//        Role roleAdmin = new Role();
+//        roleAdmin.setRoleName("ADMIN");
+//
+//        Set<UserRole> userRoleSet = new HashSet<>();
+//        UserRole userRole = new UserRole();
+//
+//        userRole.setRole(roleAdmin);
+//        userRole.setUser(user);
+//
+//        userRoleSet.add(userRole);
+//        User createAdmin = userService.createUser(user, userRoleSet);
 
     }
 }
