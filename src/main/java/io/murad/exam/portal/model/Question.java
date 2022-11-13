@@ -21,6 +21,7 @@ public class Question {
     private Long id;
 
     @Column
+    @Lob
     private String content;
 
     @Column
