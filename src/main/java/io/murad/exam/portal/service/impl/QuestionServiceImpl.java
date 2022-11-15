@@ -1,6 +1,7 @@
 package io.murad.exam.portal.service.impl;
 
 import io.murad.exam.portal.model.Question;
+import io.murad.exam.portal.model.Quiz;
 import io.murad.exam.portal.repository.QuestionRepository;
 import io.murad.exam.portal.service.QuestionService;
 import lombok.AllArgsConstructor;
@@ -39,5 +40,10 @@ public class QuestionServiceImpl implements QuestionService {
     @Override
     public void deleteQuestion(Long id) {
         questionRepository.deleteById(id);
+    }
+
+    @Override
+    public Set<Question> getQuestionsOfQuiz(Quiz quiz) {
+        return new HashSet<>(questionRepository.findByQuiz(quiz));
     }
 }
