@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
+import java.util.Set;
 
 @RestController
 @AllArgsConstructor
@@ -18,7 +19,7 @@ public class CategoryController {
     private CategoryService categoryService;
 
     @PostMapping("/add")
-    public ResponseEntity<?> addCategory(@RequestBody Category category){
+    public ResponseEntity<Category> addCategory(@RequestBody Category category){
         return new ResponseEntity<>(categoryService.saveCategory(category), HttpStatus.CREATED);
     }
 
@@ -27,5 +28,13 @@ public class CategoryController {
         Category category = categoryService.getCategory(id).get();
         return new ResponseEntity<Category>(category,HttpStatus.OK);
     }
+
+    @GetMapping("/all")
+    public ResponseEntity<Set<Category>> getCategories(){
+        return new ResponseEntity<>(categoryService.getCategories(),HttpStatus.OK);
+    }
+
+    @PutMapping("/edit")
+    public ResponseEntity<Category> updateCategory(@)
 
 }
