@@ -8,7 +8,7 @@ import java.util.Set;
 public interface CategoryService {
     Optional<Category> getCategory(Long id);
     Category saveCategory(Category category);
-    Category updateCategory();
+    Category updateCategory(Category category,Long id);
     Set<Category> getCategories();
     void deleteCategory(Long id);
 
