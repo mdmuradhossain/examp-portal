@@ -1,5 +1,6 @@
 package io.murad.exam.portal.service.impl;
 
+import io.murad.exam.portal.exception.QuestionNotFoundException;
 import io.murad.exam.portal.model.Question;
 import io.murad.exam.portal.model.Quiz;
 import io.murad.exam.portal.repository.QuestionRepository;
@@ -8,7 +9,6 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
-import java.util.Optional;
 import java.util.Set;
 
 @Service
@@ -18,17 +18,19 @@ public class QuestionServiceImpl implements QuestionService {
     private QuestionRepository questionRepository;
 
     @Override
-    public Optional<Question> getQuestion(Long id) {
-        return questionRepository.findById(id);
+    public Question getQuestion(Long id) throws QuestionNotFoundException {
+        return questionRepository.findById(id).orElseThrow(() -> new QuestionNotFoundException("Question Not Found"));
     }
 
     @Override
-    public Question saveQuiz(Question question) {
+    public Question saveQuestion(Question question) {
         return questionRepository.save(question);
     }
 
     @Override
-    public Question updateQuiz(Question question, Long id) {
+    public Question updateQuestion(Question question, Long id) throws QuestionNotFoundException {
+        Question updateQuestion = questionRepository.findById(id).orElseThrow(() ->
+                new QuestionNotFoundException("Not found"));
         return questionRepository.save(question);
     }
 
