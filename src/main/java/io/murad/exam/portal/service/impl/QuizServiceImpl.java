@@ -5,6 +5,7 @@ import io.murad.exam.portal.model.Quiz;
 import io.murad.exam.portal.repository.QuizRepository;
 import io.murad.exam.portal.service.QuizService;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
@@ -12,6 +13,7 @@ import java.util.Set;
 
 @Service
 @AllArgsConstructor
+@Slf4j
 public class QuizServiceImpl implements QuizService {
 
     private QuizRepository quizRepository;
@@ -43,6 +45,10 @@ public class QuizServiceImpl implements QuizService {
 
     @Override
     public void deleteQuiz(Long id) {
-        quizRepository.deleteById(id);
+        if (quizRepository.findById(id).isPresent()) {
+            quizRepository.deleteById(id);
+        } else {
+            log.warn("Quiz is not exist!");
+        }
     }
 }

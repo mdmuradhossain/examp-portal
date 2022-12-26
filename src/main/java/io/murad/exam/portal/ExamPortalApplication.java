@@ -1,8 +1,5 @@
 package io.murad.exam.portal;
 
-import io.murad.exam.portal.model.Role;
-import io.murad.exam.portal.model.User;
-import io.murad.exam.portal.model.UserRole;
 import io.murad.exam.portal.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -11,8 +8,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import java.util.HashSet;
-import java.util.Set;
 
 @SpringBootApplication
 @EnableJpaRepositories(basePackages = "io.murad.exam.portal.repository")
@@ -29,6 +24,7 @@ public class ExamPortalApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
+
 
 //        User user = new User();
 //        user.setFirstName("Murad");
@@ -48,6 +44,7 @@ public class ExamPortalApplication implements CommandLineRunner {
 //
 //        userRoleSet.add(userRole);
 //        User createAdmin = userService.createUser(user, userRoleSet);
+
 
     }
 }
