@@ -47,6 +47,7 @@ public class QuizServiceImpl implements QuizService {
     public void deleteQuiz(Long id) {
         if (quizRepository.findById(id).isPresent()) {
             quizRepository.deleteById(id);
+            log.info("quiz deleted" + id);
         } else {
             log.warn("Quiz is not exist!");
         }
